@@ -17,9 +17,9 @@ public class StoreData {
 	private static SessionFactory sessionFactory;
 	private static ServiceRegistry serviceRegistry;
 
-	public static SessionFactory createSessionFactory() {
-		Configuration configuration = new Configuration();
-		configuration.configure();
+	public static SessionFactory createSessionFactory(Configuration configuration) {
+		//Configuration configuration = new Configuration();
+		//configuration.configure();
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
 				configuration.getProperties()).build();
 		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
@@ -32,7 +32,7 @@ public static void main(String[] args) {
 	cfg.configure("hibernate.cfg.xml");//populates the data of the configuration file
 	
 	//creating seession factory object
-	SessionFactory factory= createSessionFactory();
+	SessionFactory factory= createSessionFactory(cfg);
 	
 	//creating session object
 	Session session=factory.openSession();
